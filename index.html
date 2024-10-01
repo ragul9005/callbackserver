@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Data Receiver</title>
+</head>
+<body>
+    <h1>Live Data Receiver</h1>
+    <h2>Received Data:</h2>
+    <pre id="responseOutput"></pre>
+
+    <script>
+        const socket = new WebSocket(`ws://${window.location.host}/ws`);
+
+        // Listen for messages from the server
+        socket.onmessage = function(event) {
+            const responseOutput = document.getElementById('responseOutput');
+            responseOutput.textContent += event.data + "\n"; // Append new data
+        };
+    </script>
+</body>
+</html>
